@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -24,20 +23,20 @@ const Projects = () => {
       description: "A secure platform for managing lottery tickets and results. Implemented real-time updates, ticket verification, and a personalized user dashboard.",
       tags: ["React", "Tailwind CSS", "TypeScript", "Node.js"],
       github: "https://github.com/indugundam/lottery-hub",
-      image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&auto=format&fit=crop"
+      image: "/lovable-uploads/160d31a0-d201-4d04-97f7-252dd3b725e7.png"
     },
     {
       title: "Food Finder",
       description: "Web application that helps users discover nearby restaurants, explore menus, and find the best food deals based on their preferences.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
       github: "https://github.com/indugundam/food-finder",
-      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop"
+      image: "/lovable-uploads/905fb1e8-8205-4de8-a2b7-402b2a168b5b.png"
     },
     {
       title: "Extensible Desktop Search",
       description: "High-performance desktop application as a robust alternative to Windows' native search tool, leveraging Swings to deliver lightning-fast query results with minimal latency.",
       tags: ["Java", "Swings"],
-      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&auto=format&fit=crop"
+      image: "/lovable-uploads/9bdc1f4c-16a5-4455-8fcd-e5a1390795e1.png"
     }
   ];
   
@@ -47,7 +46,6 @@ const Projects = () => {
       ref={ref}
       className="py-20 scroll-section relative overflow-hidden"
     >
-      {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-1/4 right-0 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/3 left-0 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>

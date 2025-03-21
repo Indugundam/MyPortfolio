@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -21,25 +20,25 @@ const Blog = () => {
   // Real blog posts from Indu's Medium account
   const blogPosts = [
     {
-      title: "How the Web Became What It is Today",
-      excerpt: "A journey through the history and evolution of the web - from ARPANET and Tim Berners-Lee's invention to Web 3.0 and beyond. Exploring key technologies, protocols, and paradigm shifts.",
-      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*M8pxOAy9x1XJ3kfs-xR0Ig.jpeg",
+      title: "System Informer",
+      excerpt: "A deep dive into System Informer, an open-source diagnostic and system utility tool for Windows that provides detailed insights into system performance, processes, services, and more.",
+      image: "/lovable-uploads/45bed4f9-1910-417f-a309-2e5e37b45697.png",
       date: "Aug 28, 2023",
-      url: "https://medium.com/@indugundam/how-the-web-became-what-it-is-today-e7cda47c1c1b",
+      url: "https://medium.com/@indugundam/system-informer-eb952516b199",
     },
     {
       title: "Engineering is No Longer a Passion, It's a Fashion",
       excerpt: "Exploring how engineering education has evolved from a passionate pursuit of knowledge to a fashionable career choice, and the implications this shift has on the quality of engineering graduates.",
-      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*HxbCE9e6CQ7ncoPOWQn3nA.jpeg",
+      image: "/lovable-uploads/03d2463d-c668-4125-9d50-ec4949632903.png",
       date: "Aug 28, 2023",
       url: "https://medium.com/@indugundam/engineering-is-no-longer-a-passion-its-a-fashion-2d2829eda634",
     },
     {
-      title: "System Informer",
-      excerpt: "A deep dive into System Informer, an open-source diagnostic and system utility tool for Windows that provides detailed insights into system performance, processes, services, and more.",
-      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9xyZiuaaVRHUq3vKvA1K8g.png",
+      title: "How the Web Became What It is Today",
+      excerpt: "A journey through the history and evolution of the web - from ARPANET and Tim Berners-Lee's invention to Web 3.0 and beyond. Exploring key technologies, protocols, and paradigm shifts.",
+      image: "/lovable-uploads/305e4ca5-bc56-47ff-9797-b2f18fd96823.png",
       date: "Aug 28, 2023",
-      url: "https://medium.com/@indugundam/system-informer-eb952516b199",
+      url: "https://medium.com/@indugundam/how-the-web-became-what-it-is-today-e7cda47c1c1b",
     },
   ];
   
