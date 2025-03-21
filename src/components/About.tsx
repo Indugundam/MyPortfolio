@@ -22,15 +22,21 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="py-20 scroll-section"
+      className="py-20 scroll-section relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      {/* Background elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-1/3 right-0 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
             <div className="md:col-span-2 flex flex-col items-center md:items-start">
               <h2 
                 className={cn(
-                  "text-3xl font-bold mb-8 text-primary transition-all duration-700",
+                  "text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 transition-all duration-700",
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
@@ -39,11 +45,11 @@ const About = () => {
               
               <div 
                 className={cn(
-                  "relative overflow-hidden rounded-2xl w-full max-w-xs transition-all duration-700 delay-300",
+                  "relative overflow-hidden rounded-2xl w-full max-w-xs transition-all duration-700 delay-300 shadow-lg",
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
-                <div className="aspect-[4/5] bg-gradient-to-br from-primary/10 to-secondary rounded-2xl flex items-center justify-center text-muted-foreground">
+                <div className="aspect-[4/5] bg-gradient-to-br from-blue-100/20 via-indigo-100/20 to-purple-100/20 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center text-muted-foreground glass-morphism">
                   <span className="text-sm">Your Photo Here</span>
                 </div>
                 
@@ -58,7 +64,7 @@ const About = () => {
               >
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm border border-primary/20 rounded-lg font-medium hover:bg-secondary transition-colors"
+                  className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm glass-morphism rounded-lg font-medium hover:bg-white/10 transition-all shadow-md"
                 >
                   <FileText className="w-4 h-4" />
                   <span>View Resume</span>
@@ -66,7 +72,7 @@ const About = () => {
                 
                 <a
                   href="#"
-                  className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm bg-gradient-blue text-primary-foreground rounded-lg font-medium hover:shadow-lg transition-all shadow-md"
                 >
                   <Download className="w-4 h-4" />
                   <span>Download CV</span>
@@ -76,7 +82,7 @@ const About = () => {
             
             <div 
               className={cn(
-                "md:col-span-3 transition-all duration-700 delay-300",
+                "md:col-span-3 transition-all duration-700 delay-300 glass-morphism p-6 rounded-2xl shadow-lg",
                 visible ? "opacity-100" : "opacity-0 translate-y-10"
               )}
             >

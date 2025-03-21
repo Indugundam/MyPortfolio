@@ -30,7 +30,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
       target="_blank" 
       rel="noopener noreferrer"
       className={cn(
-        "group flex flex-col h-full bg-card/80 backdrop-blur-sm border border-primary/10 rounded-2xl overflow-hidden transition-all duration-700",
+        "group flex flex-col h-full glass-morphism rounded-2xl overflow-hidden transition-all duration-700 shadow-lg scale-on-hover",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -43,17 +43,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
           alt={title} 
           className={cn(
             "w-full h-full object-cover transition-transform duration-500",
-            isHovered ? "scale-105" : "scale-100"
+            isHovered ? "scale-110" : "scale-100"
           )}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-primary/80 backdrop-blur-sm rounded-full">
+        <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-gradient-blue backdrop-blur-sm rounded-full shadow-sm">
           {date}
         </div>
       </div>
       
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-300">
+        <h3 className="text-lg font-semibold mb-2 line-clamp-2 group-hover:text-transparent bg-clip-text bg-gradient-to-r from-primary to-indigo-500 transition-all duration-300">
           {title}
         </h3>
         <p className="text-sm text-muted-foreground line-clamp-3 mb-4 flex-grow">

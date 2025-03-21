@@ -10,6 +10,7 @@ interface SkillCardProps {
   description: string;
   delay?: number;
   visible: boolean;
+  index: number;
 }
 
 const SkillCard: React.FC<SkillCardProps> = ({
@@ -17,18 +18,24 @@ const SkillCard: React.FC<SkillCardProps> = ({
   title,
   description,
   delay = 0,
-  visible
+  visible,
+  index
 }) => {
+  const floatDelay = index * 0.5; // Different float timing for each card
+  
   return (
     <div 
       className={cn(
-        "bg-card rounded-xl p-6 transition-all duration-700 border border-border",
+        "glass-morphism rounded-xl p-6 transition-all duration-700 shadow-lg scale-on-hover",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10",
         delay ? `transition-delay-${delay}` : ""
       )}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        animation: `floating 3s ease-in-out ${floatDelay}s infinite` 
+      }}
     >
-      <div className="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+      <div className="w-12 h-12 flex items-center justify-center bg-gradient-blue bg-opacity-10 rounded-lg mb-4 text-primary shadow-sm">
         {icon}
       </div>
       <h3 className="text-lg font-semibold mb-2">{title}</h3>
@@ -71,13 +78,19 @@ const Skills = () => {
     <section
       id="skills"
       ref={ref}
-      className="py-20 bg-secondary/30 scroll-section"
+      className="py-20 bg-gradient-section scroll-section relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      {/* Background elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-indigo-200 dark:bg-indigo-900 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 
             className={cn(
-              "text-3xl font-bold mb-4 transition-all duration-700",
+              "text-3xl font-bold mb-4 transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500",
               visible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
@@ -95,53 +108,48 @@ const Skills = () => {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          <SkillCard
-            icon={<span className="text-xl">💻</span>}
-            title="Programming Languages"
-            description="Proficient in Java, Python, and various web technologies. Experienced in building robust applications."
-            delay={300}
-            visible={visible}
-          />
-          
-          <SkillCard
-            icon={<span className="text-xl">☁️</span>}
-            title="Cloud Technologies"
-            description="Experienced with AWS and Azure services. Completed certifications and built cloud-native applications."
-            delay={400}
-            visible={visible}
-          />
-          
-          <SkillCard
-            icon={<span className="text-xl">🔍</span>}
-            title="Problem Solving"
-            description="Strong algorithm skills and analytical thinking. Capable of debugging complex issues efficiently."
-            delay={500}
-            visible={visible}
-          />
-          
-          <SkillCard
-            icon={<span className="text-xl">🌐</span>}
-            title="Web Development"
-            description="Experience with React, HTML, CSS, and JavaScript to create responsive and interactive web applications."
-            delay={600}
-            visible={visible}
-          />
-          
-          <SkillCard
-            icon={<span className="text-xl">🗄️</span>}
-            title="Database Management"
-            description="Proficient in SQL, MySQL, Oracle, and NoSQL databases. Experience in database design and optimization."
-            delay={700}
-            visible={visible}
-          />
-          
-          <SkillCard
-            icon={<span className="text-xl">🔄</span>}
-            title="Version Control"
-            description="Experienced with Git and GitHub for collaboration, code management, and version control."
-            delay={800}
-            visible={visible}
-          />
+          {[
+            {
+              icon: <span className="text-xl">💻</span>,
+              title: "Programming Languages",
+              description: "Proficient in Java, Python, and various web technologies. Experienced in building robust applications."
+            },
+            {
+              icon: <span className="text-xl">☁️</span>,
+              title: "Cloud Technologies",
+              description: "Experienced with AWS and Azure services. Completed certifications and built cloud-native applications."
+            },
+            {
+              icon: <span className="text-xl">🔍</span>,
+              title: "Problem Solving",
+              description: "Strong algorithm skills and analytical thinking. Capable of debugging complex issues efficiently."
+            },
+            {
+              icon: <span className="text-xl">🌐</span>,
+              title: "Web Development",
+              description: "Experience with React, HTML, CSS, and JavaScript to create responsive and interactive web applications."
+            },
+            {
+              icon: <span className="text-xl">🗄️</span>,
+              title: "Database Management",
+              description: "Proficient in SQL, MySQL, Oracle, and NoSQL databases. Experience in database design and optimization."
+            },
+            {
+              icon: <span className="text-xl">🔄</span>,
+              title: "Version Control",
+              description: "Experienced with Git and GitHub for collaboration, code management, and version control."
+            }
+          ].map((skill, index) => (
+            <SkillCard
+              key={index}
+              icon={skill.icon}
+              title={skill.title}
+              description={skill.description}
+              delay={index * 100 + 300}
+              visible={visible}
+              index={index}
+            />
+          ))}
         </div>
         
         <div 
@@ -150,8 +158,8 @@ const Skills = () => {
             visible ? "opacity-100" : "opacity-0 translate-y-10"
           )}
         >
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Programming Languages</h3>
+          <div className="glass-morphism p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Programming Languages</h3>
             {programmingSkills.map((skill, index) => (
               <SkillBar
                 key={skill.name}
@@ -163,8 +171,8 @@ const Skills = () => {
             ))}
           </div>
           
-          <div>
-            <h3 className="text-xl font-semibold mb-6">Development Skills</h3>
+          <div className="glass-morphism p-6 rounded-xl shadow-lg">
+            <h3 className="text-xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Development Skills</h3>
             {developmentSkills.map((skill, index) => (
               <SkillBar
                 key={skill.name}

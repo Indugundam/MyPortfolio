@@ -29,21 +29,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div 
       className={cn(
-        "group relative bg-card/80 backdrop-blur-sm overflow-hidden rounded-xl transition-all duration-700 border border-primary/10 h-full",
+        "group relative glass-morphism overflow-hidden rounded-xl transition-all duration-700 shadow-lg h-full scale-on-hover",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}
       style={{ transitionDelay: `${delay}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="aspect-video bg-secondary overflow-hidden">
+      <div className="aspect-video bg-gradient-to-br from-secondary/50 to-secondary/20 overflow-hidden">
         {image ? (
           <img 
             src={image} 
             alt={title} 
             className={cn(
               "w-full h-full object-cover transition-transform duration-500",
-              isHovered ? "scale-105" : "scale-100"
+              isHovered ? "scale-110" : "scale-100"
             )}
           />
         ) : (
@@ -51,6 +51,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <span>Project Image</span>
           </div>
         )}
+        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       
       <div className="p-6">
@@ -58,14 +59,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {tags.map((tag, index) => (
             <span 
               key={index}
-              className="text-xs px-2 py-1 bg-primary/10 rounded-full text-primary/80 font-medium"
+              className="text-xs px-2 py-1 bg-gradient-blue bg-opacity-10 rounded-full text-primary font-medium"
             >
               {tag}
             </span>
           ))}
         </div>
         
-        <h3 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{title}</h3>
+        <h3 className="text-xl font-semibold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80 group-hover:from-primary group-hover:to-indigo-500 transition-all duration-300">{title}</h3>
         <p className="text-sm text-muted-foreground mb-4">{description}</p>
         
         <div className="flex items-center space-x-3">
@@ -97,7 +98,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       
       <div 
         className={cn(
-          "absolute bottom-0 left-0 w-full h-1 bg-primary transition-transform duration-500",
+          "absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-indigo-500 transition-transform duration-500",
           isHovered ? "translate-y-0" : "translate-y-full"
         )}
       ></div>

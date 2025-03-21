@@ -128,6 +128,19 @@ export default {
         "text-blur-out": {
           "0%": { filter: "blur(0.01)" },
           "100%": { filter: "blur(12px) opacity(0%)" }
+        },
+        "floating": {
+          "0%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+          "100%": { transform: "translateY(0px)" }
+        },
+        "blur-in": {
+          "0%": { filter: "blur(5px)", opacity: "0" },
+          "100%": { filter: "blur(0)", opacity: "1" }
+        },
+        "glow-pulse": {
+          "0%, 100%": { boxShadow: "0 0 10px rgba(79, 70, 229, 0.3)" },
+          "50%": { boxShadow: "0 0 20px rgba(79, 70, 229, 0.6)" }
         }
       },
       animation: {
@@ -146,6 +159,9 @@ export default {
         "spin-slow": "spin-slow 8s linear infinite",
         "typewriter": "typewriter 2s steps(40) forwards",
         "text-blur-out": "text-blur-out 0.8s cubic-bezier(0.550, 0.085, 0.680, 0.530) both",
+        "floating": "floating 3s ease-in-out infinite",
+        "blur-in": "blur-in 0.5s ease-out forwards",
+        "glow-pulse": "glow-pulse 2s ease-in-out infinite"
       }
     }
   },

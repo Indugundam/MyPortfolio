@@ -20,20 +20,21 @@ const Hero = () => {
       id="home" 
       className="relative min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden scroll-section"
     >
+      {/* Dynamic gradient background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 -right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-primary/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 -right-10 w-72 h-72 bg-primary/20 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-1/4 -left-20 w-80 h-80 bg-indigo-500/20 rounded-full blur-[100px]"></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div 
             className={cn(
-              "px-3 py-1 rounded-full bg-secondary inline-flex items-center mb-8 transition-all duration-700",
+              "px-4 py-2 rounded-full glass-morphism inline-flex items-center mb-8 transition-all duration-700 shadow-sm",
               isVisible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
-            <span className="text-sm">Bachelor of Information Technology</span>
+            <span className="text-sm font-medium">Bachelor of Information Technology</span>
           </div>
           
           <h1 
@@ -42,7 +43,7 @@ const Hero = () => {
               isVisible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
-            <span className="block">Hello, I'm Indu Gundam</span>
+            <span className="block bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Hello, I'm Indu Gundam</span>
           </h1>
           
           <div 
@@ -78,14 +79,14 @@ const Hero = () => {
           >
             <a
               href="#projects"
-              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+              className="px-6 py-3 bg-gradient-blue text-primary-foreground rounded-lg font-medium hover:shadow-lg transition-all duration-300 shadow-md"
             >
               View My Work
             </a>
             
             <a
               href="#contact"
-              className="px-6 py-3 border border-primary/20 rounded-lg font-medium hover:bg-secondary transition-colors"
+              className="px-6 py-3 glass-morphism rounded-lg font-medium hover:bg-white/10 transition-all duration-300"
             >
               Get In Touch
             </a>
@@ -95,7 +96,7 @@ const Hero = () => {
       
       <div 
         className={cn(
-          "absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-float transition-all duration-700 delay-1000",
+          "absolute bottom-10 left-1/2 transform -translate-x-1/2 float transition-all duration-700 delay-1000",
           isVisible ? "opacity-100" : "opacity-0"
         )}
       >

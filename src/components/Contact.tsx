@@ -83,13 +83,19 @@ const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="py-20 scroll-section"
+      className="py-20 scroll-section relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      {/* Background elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 
             className={cn(
-              "text-3xl font-bold mb-4 transition-all duration-700",
+              "text-3xl font-bold mb-4 transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500",
               visible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
@@ -114,8 +120,8 @@ const Contact = () => {
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
             >
-              <div className="bg-card p-8 rounded-xl border border-border h-full">
-                <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
+              <div className="glass-morphism p-8 rounded-xl h-full">
+                <h3 className="text-xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Contact Information</h3>
                 
                 <div className="space-y-4">
                   {contactInfo.map((item, index) => (
@@ -126,12 +132,12 @@ const Contact = () => {
                       rel={item.href.startsWith('http') ? "noopener noreferrer" : undefined}
                       className="flex items-center space-x-3 group"
                     >
-                      <div className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/10 to-indigo-500/10 flex items-center justify-center group-hover:from-primary/20 group-hover:to-indigo-500/20 transition-all">
                         {item.icon}
                       </div>
                       <div>
                         <p className="text-sm text-muted-foreground">{item.label}</p>
-                        <p className="text-sm font-medium group-hover:text-primary transition-colors">
+                        <p className="text-sm font-medium group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-indigo-500 transition-all">
                           {item.value}
                         </p>
                       </div>
@@ -147,8 +153,8 @@ const Contact = () => {
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               )}
             >
-              <form onSubmit={handleSubmit} className="bg-card p-8 rounded-xl border border-border">
-                <h3 className="text-xl font-semibold mb-6">Send Message</h3>
+              <form onSubmit={handleSubmit} className="glass-morphism p-8 rounded-xl">
+                <h3 className="text-xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/80">Send Message</h3>
                 
                 <div className="space-y-4">
                   <div>
@@ -162,7 +168,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                       placeholder="Your name"
                     />
                   </div>
@@ -178,7 +184,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
                       placeholder="Your email"
                     />
                   </div>
@@ -194,7 +200,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-2 border border-border rounded-lg bg-background focus:outline-none focus:ring-1 focus:ring-primary transition-all resize-none"
+                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all resize-none"
                       placeholder="Your message"
                     ></textarea>
                   </div>
@@ -203,9 +209,9 @@ const Contact = () => {
                     type="submit"
                     disabled={formStatus === "sending"}
                     className={cn(
-                      "w-full px-6 py-3 flex items-center justify-center space-x-2 rounded-lg font-medium transition-colors",
-                      formStatus === "sending" ? "bg-primary/70 cursor-not-allowed" : "bg-primary hover:bg-primary/90",
-                      "text-primary-foreground"
+                      "w-full px-6 py-3 flex items-center justify-center space-x-2 rounded-lg font-medium transition-all",
+                      formStatus === "sending" ? "bg-gradient-blue/70 cursor-not-allowed" : "bg-gradient-blue hover:shadow-lg",
+                      "text-primary-foreground shadow-md"
                     )}
                   >
                     {formStatus === "sending" ? (

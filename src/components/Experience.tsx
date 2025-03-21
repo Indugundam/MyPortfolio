@@ -55,13 +55,19 @@ const Experience = () => {
     <section
       id="experience"
       ref={ref}
-      className="py-20 bg-secondary/30 scroll-section"
+      className="py-20 bg-gradient-section scroll-section relative overflow-hidden"
     >
-      <div className="container mx-auto px-4">
+      {/* Background elements */}
+      <div className="absolute inset-0 pointer-events-none opacity-30">
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-indigo-200 dark:bg-indigo-900 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 left-0 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 
             className={cn(
-              "text-3xl font-bold mb-4 transition-all duration-700",
+              "text-3xl font-bold mb-4 transition-all duration-700 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500",
               visible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
