@@ -33,9 +33,9 @@ const SkillBar: React.FC<SkillBarProps> = ({
     <div className="mb-6">
       <div className="flex justify-between mb-2">
         <span className="text-sm font-medium">{name}</span>
-        <span className="text-sm text-primary">{percentage}%</span>
+        <span className="text-sm font-medium text-primary">{percentage}%</span>
       </div>
-      <div className="h-2 bg-secondary/50 rounded-full overflow-hidden shadow-inner backdrop-blur-sm">
+      <div className="h-2 bg-secondary/40 rounded-full overflow-hidden shadow-inner backdrop-blur-sm">
         <div 
           className="h-full bg-gradient-to-r from-primary to-indigo-500 transition-all duration-1000 ease-out rounded-full"
           style={{ width: `${width}%` }}

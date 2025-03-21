@@ -49,8 +49,12 @@ const About = () => {
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
-                <div className="aspect-[4/5] bg-gradient-to-br from-blue-100/20 via-indigo-100/20 to-purple-100/20 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center text-muted-foreground glass-morphism">
-                  <span className="text-sm">Your Photo Here</span>
+                <div className="aspect-[4/5] bg-gradient-to-br from-blue-100/20 via-indigo-100/20 to-purple-100/20 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center glass-morphism overflow-hidden">
+                  <img 
+                    src="/lovable-uploads/62ed3055-8ec5-4ac4-9803-2b36bf4fd5fe.png" 
+                    alt="Indu Gundam" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
                 
                 <div className="absolute inset-0 rounded-2xl border border-primary/10"></div>

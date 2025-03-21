@@ -24,20 +24,20 @@ const Projects = () => {
       description: "A secure platform for managing lottery tickets and results. Implemented real-time updates, ticket verification, and a personalized user dashboard.",
       tags: ["React", "Tailwind CSS", "TypeScript", "Node.js"],
       github: "https://github.com/indugundam/lottery-hub",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800&auto=format&fit=crop"
     },
     {
       title: "Food Finder",
       description: "Web application that helps users discover nearby restaurants, explore menus, and find the best food deals based on their preferences.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
       github: "https://github.com/indugundam/food-finder",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop"
     },
     {
       title: "Extensible Desktop Search",
       description: "High-performance desktop application as a robust alternative to Windows' native search tool, leveraging Swings to deliver lightning-fast query results with minimal latency.",
       tags: ["Java", "Swings"],
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop"
+      image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&auto=format&fit=crop"
     }
   ];
   

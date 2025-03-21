@@ -47,7 +47,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
           )}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-gradient-blue backdrop-blur-sm rounded-full shadow-sm">
+        <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-primary/80 backdrop-blur-sm rounded-full shadow-sm">
           {date}
         </div>
       </div>

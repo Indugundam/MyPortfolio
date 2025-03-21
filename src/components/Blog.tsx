@@ -18,28 +18,28 @@ const Blog = () => {
     }
   }, [inView]);
   
-  // Sample blog posts from Medium - replace with your actual posts
+  // Real blog posts from Indu's Medium account
   const blogPosts = [
     {
-      title: "Building Robust Web Applications with React and TypeScript",
-      excerpt: "Learn how to create scalable and maintainable web applications using React with TypeScript for improved developer experience and code quality.",
-      image: "https://miro.medium.com/max/1400/1*yjH3SiDaVWtpBX0g_2q68g.jpeg",
-      date: "May 15, 2023",
-      url: "https://medium.com/@yourusername/article1",
+      title: "How the Web Became What It is Today",
+      excerpt: "A journey through the history and evolution of the web - from ARPANET and Tim Berners-Lee's invention to Web 3.0 and beyond. Exploring key technologies, protocols, and paradigm shifts.",
+      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*M8pxOAy9x1XJ3kfs-xR0Ig.jpeg",
+      date: "Aug 28, 2023",
+      url: "https://medium.com/@indugundam/how-the-web-became-what-it-is-today-e7cda47c1c1b",
     },
     {
-      title: "Cloud Architecture: Building Scalable Solutions with AWS",
-      excerpt: "Discover the best practices for designing cloud-native applications on AWS that can scale effortlessly while maintaining reliability and performance.",
-      image: "https://miro.medium.com/max/1400/1*9KPgGFpPiLXSRoRfSzd8Iw.jpeg",
-      date: "Aug 22, 2023",
-      url: "https://medium.com/@yourusername/article2",
+      title: "Engineering is No Longer a Passion, It's a Fashion",
+      excerpt: "Exploring how engineering education has evolved from a passionate pursuit of knowledge to a fashionable career choice, and the implications this shift has on the quality of engineering graduates.",
+      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*HxbCE9e6CQ7ncoPOWQn3nA.jpeg",
+      date: "Aug 28, 2023",
+      url: "https://medium.com/@indugundam/engineering-is-no-longer-a-passion-its-a-fashion-2d2829eda634",
     },
     {
-      title: "Mastering Data Structures and Algorithms in Java",
-      excerpt: "A comprehensive guide to understanding and implementing essential data structures and algorithms using Java, with practical examples and performance analysis.",
-      image: "https://miro.medium.com/max/1400/1*CfoISgLRa_OxTnT9q7M7Yw.jpeg",
-      date: "Nov 10, 2023",
-      url: "https://medium.com/@yourusername/article3",
+      title: "System Informer",
+      excerpt: "A deep dive into System Informer, an open-source diagnostic and system utility tool for Windows that provides detailed insights into system performance, processes, services, and more.",
+      image: "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*9xyZiuaaVRHUq3vKvA1K8g.png",
+      date: "Aug 28, 2023",
+      url: "https://medium.com/@indugundam/system-informer-eb952516b199",
     },
   ];
   
