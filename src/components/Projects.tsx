@@ -1,0 +1,92 @@
+
+import { useState, useEffect } from "react";
+import { useInView } from "react-intersection-observer";
+import { cn } from "@/lib/utils";
+import ProjectCard from "./ProjectCard";
+
+const Projects = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  
+  const [visible, setVisible] = useState(false);
+  
+  useEffect(() => {
+    if (inView) {
+      setVisible(true);
+    }
+  }, [inView]);
+  
+  const projects = [
+    {
+      title: "Lottery Hub",
+      description: "A secure platform for managing lottery tickets and results. Implemented real-time updates, ticket verification, and a personalized user dashboard.",
+      tags: ["React", "Tailwind CSS", "TypeScript", "Node.js"],
+      github: "https://github.com/indugundam/lottery-hub",
+    },
+    {
+      title: "Food Finder",
+      description: "Web application that helps users discover nearby restaurants, explore menus, and find the best food deals based on their preferences.",
+      tags: ["React", "Tailwind CSS", "JavaScript"],
+      github: "https://github.com/indugundam/food-finder",
+    },
+    {
+      title: "Extensible Desktop Search",
+      description: "High-performance desktop application as a robust alternative to Windows' native search tool, leveraging Swings to deliver lightning-fast query results with minimal latency.",
+      tags: ["Java", "Swings"],
+    },
+    {
+      title: "E-Commerce Platform",
+      description: "Serverless e-commerce platform using AWS S3 for hosting, CloudFront for global delivery, and Lambda for backend functionality like search and customer interactions.",
+      tags: ["AWS", "S3", "CloudFront", "Lambda", "DynamoDB"],
+    },
+  ];
+  
+  return (
+    <section
+      id="projects"
+      ref={ref}
+      className="py-20 scroll-section"
+    >
+      <div className="container mx-auto px-4">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 
+            className={cn(
+              "text-3xl font-bold mb-4 transition-all duration-700",
+              visible ? "opacity-100" : "opacity-0 translate-y-10"
+            )}
+          >
+            Projects
+          </h2>
+          
+          <p 
+            className={cn(
+              "text-muted-foreground transition-all duration-700 delay-200",
+              visible ? "opacity-100" : "opacity-0 translate-y-10"
+            )}
+          >
+            A collection of projects that showcase my skills and experience in various technologies
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <ProjectCard
+              key={project.title}
+              title={project.title}
+              description={project.description}
+              tags={project.tags}
+              github={project.github}
+              demo={project.demo}
+              delay={index * 100 + 300}
+              visible={visible}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
