@@ -24,23 +24,21 @@ const Projects = () => {
       description: "A secure platform for managing lottery tickets and results. Implemented real-time updates, ticket verification, and a personalized user dashboard.",
       tags: ["React", "Tailwind CSS", "TypeScript", "Node.js"],
       github: "https://github.com/indugundam/lottery-hub",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop"
     },
     {
       title: "Food Finder",
       description: "Web application that helps users discover nearby restaurants, explore menus, and find the best food deals based on their preferences.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
       github: "https://github.com/indugundam/food-finder",
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=800&auto=format&fit=crop"
     },
     {
       title: "Extensible Desktop Search",
       description: "High-performance desktop application as a robust alternative to Windows' native search tool, leveraging Swings to deliver lightning-fast query results with minimal latency.",
       tags: ["Java", "Swings"],
-    },
-    {
-      title: "E-Commerce Platform",
-      description: "Serverless e-commerce platform using AWS S3 for hosting, CloudFront for global delivery, and Lambda for backend functionality like search and customer interactions.",
-      tags: ["AWS", "S3", "CloudFront", "Lambda", "DynamoDB"],
-    },
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&auto=format&fit=crop"
+    }
   ];
   
   return (
@@ -53,7 +51,7 @@ const Projects = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 
             className={cn(
-              "text-3xl font-bold mb-4 transition-all duration-700",
+              "text-3xl font-bold mb-4 text-primary transition-all duration-700",
               visible ? "opacity-100" : "opacity-0 translate-y-10"
             )}
           >
@@ -78,7 +76,7 @@ const Projects = () => {
               description={project.description}
               tags={project.tags}
               github={project.github}
-              demo={project.demo}
+              image={project.image}
               delay={index * 100 + 300}
               visible={visible}
             />

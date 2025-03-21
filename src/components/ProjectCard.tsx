@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div 
       className={cn(
-        "group relative bg-card overflow-hidden rounded-xl transition-all duration-700 border border-border h-full",
+        "group relative bg-card/80 backdrop-blur-sm overflow-hidden rounded-xl transition-all duration-700 border border-primary/10 h-full",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -58,7 +58,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {tags.map((tag, index) => (
             <span 
               key={index}
-              className="text-xs px-2 py-1 bg-secondary rounded-full text-muted-foreground"
+              className="text-xs px-2 py-1 bg-primary/10 rounded-full text-primary/80 font-medium"
             >
               {tag}
             </span>
@@ -74,7 +74,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+              className="inline-flex items-center justify-center space-x-2 text-sm text-foreground/80 hover:text-primary transition-colors"
             >
               <Github className="w-4 h-4" />
               <span>View Code</span>
@@ -86,7 +86,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               href={demo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center space-x-2 text-sm text-foreground/80 hover:text-foreground transition-colors"
+              className="inline-flex items-center justify-center space-x-2 text-sm text-foreground/80 hover:text-primary transition-colors"
             >
               <ExternalLink className="w-4 h-4" />
               <span>Live Demo</span>

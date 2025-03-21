@@ -30,7 +30,7 @@ const About = () => {
             <div className="md:col-span-2 flex flex-col items-center md:items-start">
               <h2 
                 className={cn(
-                  "text-3xl font-bold mb-8 transition-all duration-700",
+                  "text-3xl font-bold mb-8 text-primary transition-all duration-700",
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
@@ -43,7 +43,7 @@ const About = () => {
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
-                <div className="aspect-[4/5] bg-secondary rounded-2xl flex items-center justify-center text-muted-foreground">
+                <div className="aspect-[4/5] bg-gradient-to-br from-primary/10 to-secondary rounded-2xl flex items-center justify-center text-muted-foreground">
                   <span className="text-sm">Your Photo Here</span>
                 </div>
                 
@@ -86,23 +86,8 @@ const About = () => {
                 </p>
                 
                 <p>
-                  My focus lies in problem solving (Algorithms), debugging, and communication skills. As the Academic Topper of my department and President of Code Chronicles, I've demonstrated leadership and excellence in my field.
+                  My focus lies in problem solving (Algorithms), debugging, and communication skills. I'm committed to continuous learning and applying cutting-edge technologies to solve real-world problems.
                 </p>
-                
-                <h3 className="text-xl font-semibold mt-6 mb-3">Education</h3>
-                <ul>
-                  <li>Bachelor's in Information Technology | Gayatri Vidya Parishad College | 9.62 CGPA (2022-Current)</li>
-                  <li>Intermediate | Narayana Junior College, Kurnool | 98.9% (2020-2022)</li>
-                  <li>Xth Grade | Jyothi High School, Bandiātmakur | 98.8% (2020)</li>
-                </ul>
-                
-                <h3 className="text-xl font-semibold mt-6 mb-3">Achievements</h3>
-                <ul>
-                  <li>Academic Topper of our department (2022-2023) and (2023-2024)</li>
-                  <li>President, Code Chronicles (2024) and Vice President, AlgoRhythm</li>
-                  <li>Acquired Certifications on Google Could(1) and AWS(1,2) Technologies</li>
-                  <li>Udemy certified Java Programmer</li>
-                </ul>
               </div>
             </div>
           </div>

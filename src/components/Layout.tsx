@@ -28,13 +28,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-background to-background/95 text-foreground overflow-x-hidden">
       <Navigation scrolled={scrolled} />
       <main className="w-full mx-auto">
         {children}
       </main>
       <footer className={cn(
-        "w-full py-6 border-t transition-all duration-300 ease-in-out",
+        "w-full py-8 border-t border-primary/10 transition-all duration-300 ease-in-out",
         "text-center text-sm text-muted-foreground"
       )}>
         <div className="container">
