@@ -104,7 +104,7 @@ const Education = () => {
                 
                 <li className="relative pl-8 before:content-[''] before:absolute before:left-0 before:top-3 before:w-3 before:h-3 before:bg-gradient-blue before:rounded-full">
                   <h4 className="text-base font-medium">Certifications</h4>
-                  <p className="text-sm text-muted-foreground mt-1">Google Could(1), AWS(1,2) Technologies, and Udemy certified Java Programmer</p>
+                  <p className="text-sm text-muted-foreground mt-1">Google Could, AWS Technologies, and Udemy certified Java Programmer</p>
                 </li>
               </ul>
             </div>

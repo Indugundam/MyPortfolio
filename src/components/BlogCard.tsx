@@ -41,10 +41,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         <img 
           src={image} 
           alt={title} 
-          className={cn(
-            "w-full h-full object-cover transition-transform duration-500",
-            isHovered ? "scale-110" : "scale-100"
-          )}
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-primary/80 backdrop-blur-sm rounded-full shadow-sm">
