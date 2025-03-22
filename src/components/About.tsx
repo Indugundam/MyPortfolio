@@ -67,7 +67,7 @@ const About = () => {
                 )}
               >
                 <a
-                  href="/lovable-uploads/62ed3055-8ec5-4ac4-9803-2b36bf4fd5fe.png"
+                  href="/lovable-uploads/e8e29d54-c538-460f-8859-76337c73649d.png"
                   target="_blank"
                   className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm glass-morphism rounded-lg font-medium hover:bg-white/10 transition-all shadow-md"
                 >
@@ -76,7 +76,7 @@ const About = () => {
                 </a>
                 
                 <a
-                  href="/lovable-uploads/62ed3055-8ec5-4ac4-9803-2b36bf4fd5fe.png"
+                  href="/lovable-uploads/e8e29d54-c538-460f-8859-76337c73649d.png"
                   download="Indu_Gundam_Resume.png"
                   className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm bg-gradient-blue text-primary-foreground rounded-lg font-medium hover:shadow-lg transition-all shadow-md"
                 >

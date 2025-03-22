@@ -23,7 +23,7 @@ const Projects = () => {
       title: "Lottery Hub",
       description: "A secure platform for managing lottery tickets and results. Implemented real-time updates, ticket verification, and a personalized user dashboard.",
       tags: ["React", "Tailwind CSS", "TypeScript", "Node.js"],
-      github: "https://github.com/indugundam/lottery-hub",
+      github: "https://github.com/Indugundam/ticket-treasure-hub",
       demo: "https://ticket-treasure-hub.vercel.app/",
       image: "/lovable-uploads/160d31a0-d201-4d04-97f7-252dd3b725e7.png"
     },
@@ -31,7 +31,7 @@ const Projects = () => {
       title: "Food Finder",
       description: "Web application that helps users discover nearby restaurants, explore menus, and find the best food deals based on their preferences.",
       tags: ["React", "Tailwind CSS", "JavaScript"],
-      github: "https://github.com/indugundam/food-finder",
+      github: "https://github.com/Indugundam/Food_Finder",
       demo: "https://food-finder-navy.vercel.app/",
       image: "/lovable-uploads/905fb1e8-8205-4de8-a2b7-402b2a168b5b.png"
     },
@@ -83,6 +83,7 @@ const Projects = () => {
               description={project.description}
               tags={project.tags}
               github={project.github}
+              demo={project.demo}
               image={project.image}
               delay={index * 100 + 300}
               visible={visible}
