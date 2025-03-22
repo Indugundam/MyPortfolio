@@ -30,7 +30,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
       target="_blank" 
       rel="noopener noreferrer"
       className={cn(
-        "group flex flex-col h-full glass-morphism rounded-2xl overflow-hidden transition-all duration-700 shadow-lg scale-on-hover",
+        "group flex flex-col h-full glass-morphism rounded-2xl overflow-hidden transition-all duration-700 shadow-lg",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -41,7 +41,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         <img 
           src={image} 
           alt={title} 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
         <div className="absolute bottom-4 left-4 text-white text-sm font-medium px-3 py-1 bg-primary/80 backdrop-blur-sm rounded-full shadow-sm">

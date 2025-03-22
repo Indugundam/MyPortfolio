@@ -29,7 +29,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div 
       className={cn(
-        "group relative glass-morphism overflow-hidden rounded-xl transition-all duration-700 shadow-lg h-full scale-on-hover",
+        "group relative glass-morphism overflow-hidden rounded-xl transition-all duration-700 shadow-lg",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}
       style={{ transitionDelay: `${delay}ms` }}
@@ -42,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <img 
               src={image} 
               alt={title} 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300"
             />
           </a>
         ) : (
@@ -50,7 +50,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
             <span>Project Image</span>
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-card/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
       
       <div className="p-6">
