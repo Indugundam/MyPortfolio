@@ -38,14 +38,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       <div className="aspect-video bg-gradient-to-br from-secondary/50 to-secondary/20 overflow-hidden">
         {image ? (
-          <img 
-            src={image} 
-            alt={title} 
-            className={cn(
-              "w-full h-full object-cover transition-transform duration-500",
-              isHovered ? "scale-110" : "scale-100"
-            )}
-          />
+          <a href={demo} target="_blank" rel="noopener noreferrer" className={!demo ? "cursor-default" : "cursor-pointer"}>
+            <img 
+              src={image} 
+              alt={title} 
+              className={cn(
+                "w-full h-full object-cover transition-transform duration-500",
+                isHovered ? "scale-110" : "scale-100"
+              )}
+            />
+          </a>
         ) : (
           <div className="w-full h-full flex items-center justify-center text-muted-foreground">
             <span>Project Image</span>
