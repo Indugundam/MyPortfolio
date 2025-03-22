@@ -47,7 +47,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={ref}
-      className="py-20 scroll-section relative overflow-hidden"
+      className="py-12 scroll-section relative overflow-hidden"
     >
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-1/4 right-0 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
@@ -55,7 +55,7 @@ const Projects = () => {
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 
             className={cn(
               "text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 transition-all duration-700",

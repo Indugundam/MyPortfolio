@@ -50,14 +50,16 @@ const Index = () => {
 
   return (
     <Layout>
-      <Hero />
-      <About />
-      <Education />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Blog />
-      <Contact />
+      <div className="space-y-0">
+        <Hero />
+        <About />
+        <Education />
+        <Skills />
+        <Projects />
+        <Experience />
+        <Blog />
+        <Contact />
+      </div>
     </Layout>
   );
 };

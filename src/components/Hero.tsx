@@ -18,7 +18,7 @@ const Hero = () => {
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex flex-col items-center justify-center py-20 overflow-hidden scroll-section"
+      className="relative min-h-[90vh] flex flex-col items-center justify-center py-12 overflow-hidden scroll-section"
     >
       {/* Dynamic gradient background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -96,7 +96,7 @@ const Hero = () => {
       
       <div 
         className={cn(
-          "absolute bottom-10 left-1/2 transform -translate-x-1/2 float transition-all duration-700 delay-1000",
+          "absolute bottom-8 left-1/2 transform -translate-x-1/2 float transition-all duration-700 delay-1000",
           isVisible ? "opacity-100" : "opacity-0"
         )}
       >

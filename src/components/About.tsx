@@ -22,7 +22,7 @@ const About = () => {
     <section
       id="about"
       ref={ref}
-      className="py-20 scroll-section relative overflow-hidden"
+      className="py-12 scroll-section relative overflow-hidden"
     >
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
@@ -32,8 +32,8 @@ const About = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-center">
-            <div className="md:col-span-2 flex flex-col items-center md:items-start">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10 items-stretch">
+            <div className="md:col-span-2 flex flex-col h-full">
               <h2 
                 className={cn(
                   "text-3xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-indigo-500 transition-all duration-700",
@@ -45,11 +45,11 @@ const About = () => {
               
               <div 
                 className={cn(
-                  "relative overflow-hidden rounded-2xl w-full max-w-xs transition-all duration-700 delay-300 shadow-lg",
+                  "relative overflow-hidden rounded-2xl w-full max-w-xs transition-all duration-700 delay-300 shadow-lg h-full",
                   visible ? "opacity-100" : "opacity-0 translate-y-10"
                 )}
               >
-                <div className="aspect-[4/5] bg-gradient-to-br from-blue-100/20 via-indigo-100/20 to-purple-100/20 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center glass-morphism overflow-hidden">
+                <div className="h-full bg-gradient-to-br from-blue-100/20 via-indigo-100/20 to-purple-100/20 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl flex items-center justify-center glass-morphism overflow-hidden">
                   <img 
                     src="/lovable-uploads/62ed3055-8ec5-4ac4-9803-2b36bf4fd5fe.png" 
                     alt="Indu Gundam" 
@@ -88,7 +88,7 @@ const About = () => {
             
             <div 
               className={cn(
-                "md:col-span-3 transition-all duration-700 delay-300 glass-morphism p-6 rounded-2xl shadow-lg",
+                "md:col-span-3 transition-all duration-700 delay-300 glass-morphism p-6 rounded-2xl shadow-lg flex flex-col justify-center h-full",
                 visible ? "opacity-100" : "opacity-0 translate-y-10"
               )}
             >

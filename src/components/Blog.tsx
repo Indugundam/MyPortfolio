@@ -47,10 +47,10 @@ const Blog = () => {
     <section
       id="blog"
       ref={ref}
-      className="py-20 scroll-section"
+      className="py-12 scroll-section"
     >
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-10">
           <h2 
             className={cn(
               "text-3xl font-bold mb-4 text-primary transition-all duration-700",
