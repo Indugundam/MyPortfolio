@@ -25,25 +25,17 @@ const Contact = () => {
   }, [inView]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const script = document.createElement('script');
-      script.src = 'https://cdn.emailjs.com/sdk/2.6.4/email.min.js';
-      script.async = true;
-      script.onload = () => {
-        if ((window as any).emailjs) {
-          console.log("EmailJS library loaded successfully");
-          (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
-        }
-      };
-      
-      const existingScript = document.querySelector('script[src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"]');
-      if (!existingScript) {
-        document.body.appendChild(script);
-      } else if ((window as any).emailjs) {
-        console.log("EmailJS already initialized");
-        (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
+    const initializeEmailJS = () => {
+      if (typeof window !== 'undefined' && window.emailjs) {
+        console.log("Contact: EmailJS already available, initializing");
+        window.emailjs.init("LDQdivLXpW4QOuPBp");
+      } else {
+        console.log("Contact: EmailJS not available yet");
+        setTimeout(initializeEmailJS, 1000);
       }
-    }
+    };
+
+    initializeEmailJS();
   }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -56,13 +48,12 @@ const Contact = () => {
     setFormStatus("sending");
     
     try {
-      if (!(window as any).emailjs) {
-        console.error("EmailJS library not loaded");
-        throw new Error("EmailJS library not loaded");
+      if (typeof window === 'undefined' || !window.emailjs) {
+        console.error("EmailJS library not loaded or not available");
+        throw new Error("EmailJS library not loaded or not available");
       }
       
-      const emailjs = (window as any).emailjs;
-      console.log("EmailJS initialized:", emailjs);
+      console.log("Starting email send process");
       
       const templateParams = {
         from_name: formData.name,
@@ -73,13 +64,13 @@ const Contact = () => {
       
       console.log("Sending email with params:", templateParams);
       
-      const result = await emailjs.send(
+      const result = await window.emailjs.send(
         "service_portfolio",
         "template_portfolio",
         templateParams
       );
       
-      console.log("Email result:", result);
+      console.log("Email send complete. Result:", result);
       
       if (result && result.status === 200) {
         setFormStatus("success");
