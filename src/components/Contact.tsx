@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -23,6 +24,13 @@ const Contact = () => {
       setVisible(true);
     }
   }, [inView]);
+
+  useEffect(() => {
+    // Initialize EmailJS when component mounts
+    if ((window as any).emailjs) {
+      (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
+    }
+  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -40,8 +48,7 @@ const Contact = () => {
       
       const emailjs = (window as any).emailjs;
       
-      emailjs.init("LDQdivLXpW4QOuPBp");
-      
+      // Create template parameters
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -49,18 +56,23 @@ const Contact = () => {
         to_email: "indugundam2004@gmail.com"
       };
       
+      console.log("Sending email with params:", templateParams);
+      
+      // Send the email
       const result = await emailjs.send(
         "service_portfolio",
         "template_portfolio",
         templateParams
       );
       
+      console.log("Email result:", result);
+      
       if (result.status === 200) {
         setFormStatus("success");
         setFormData({ name: "", email: "", message: "" });
         toast.success("Message sent successfully! I'll get back to you soon.");
       } else {
-        throw new Error("Failed to send message");
+        throw new Error(`Failed to send message: ${result.text}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
