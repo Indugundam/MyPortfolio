@@ -9,6 +9,7 @@ import Experience from "@/components/Experience";
 import Blog from "@/components/Blog";
 import Contact from "@/components/Contact";
 import { useEffect } from "react";
+import { Toaster } from "sonner";
 
 const Index = () => {
   useEffect(() => {
@@ -50,6 +51,7 @@ const Index = () => {
 
   return (
     <Layout>
+      <Toaster position="top-right" />
       <div className="space-y-0">
         <Hero />
         <About />

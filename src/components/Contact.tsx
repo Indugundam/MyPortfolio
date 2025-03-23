@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Send, Github, Linkedin, AtSign, Smartphone, MapPin } from "lucide-react";
+import { toast } from "sonner";
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -29,21 +30,52 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus("sending");
     
-    // Simulate form submission
-    setTimeout(() => {
-      console.log("Form submitted:", formData);
-      setFormStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+    try {
+      // Using EmailJS service to send the email
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          service_id: "service_portfolio", // Replace with your EmailJS service ID
+          template_id: "template_portfolio", // Replace with your EmailJS template ID
+          user_id: "YOUR_USER_ID", // Replace with your EmailJS user ID
+          template_params: {
+            from_name: formData.name,
+            from_email: formData.email,
+            message: formData.message,
+            to_email: "indugundam2004@gmail.com"
+          }
+        })
+      });
+      
+      if (response.ok) {
+        setFormStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        
+        // Reset form status after 3 seconds
+        setTimeout(() => {
+          setFormStatus("idle");
+        }, 3000);
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setFormStatus("error");
+      toast.error("Failed to send message. Please try again later.");
       
       // Reset form status after 3 seconds
       setTimeout(() => {
         setFormStatus("idle");
       }, 3000);
-    }, 1500);
+    }
   };
   
   const contactInfo = [
@@ -221,6 +253,8 @@ const Contact = () => {
                       </>
                     ) : formStatus === "success" ? (
                       <span>Message Sent!</span>
+                    ) : formStatus === "error" ? (
+                      <span>Failed to send. Try again</span>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />

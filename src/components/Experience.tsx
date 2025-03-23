@@ -30,19 +30,9 @@ const Experience = () => {
       ],
     },
     {
-      title: "President",
-      company: "Code Chronicles",
-      date: "2024",
-      description: [
-        "Led the college's premier coding club, organizing technical workshops and coding competitions.",
-        "Mentored junior students in programming and problem-solving techniques.",
-        "Established partnerships with industry professionals for guest lectures and career guidance sessions.",
-      ],
-    },
-    {
       title: "Vice President",
       company: "AlgoRhythm",
-      date: "2023 - 2024",
+      date: "2024 - Present",
       description: [
         "Managed a competitive coding club focused on algorithm optimization and data structures.",
         "Conducted regular coding challenges and hackathons to enhance problem-solving skills.",
