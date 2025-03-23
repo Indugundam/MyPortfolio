@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -35,43 +34,39 @@ const Contact = () => {
     setFormStatus("sending");
     
     try {
-      // Using EmailJS service to send the email
-      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          service_id: "service_portfolio", // Replace with your EmailJS service ID
-          template_id: "template_portfolio", // Replace with your EmailJS template ID
-          user_id: "YOUR_USER_ID", // Replace with your EmailJS user ID
-          template_params: {
-            from_name: formData.name,
-            from_email: formData.email,
-            message: formData.message,
-            to_email: "indugundam2004@gmail.com"
-          }
-        })
-      });
+      if (!(window as any).emailjs) {
+        throw new Error("EmailJS library not loaded");
+      }
       
-      if (response.ok) {
+      const emailjs = (window as any).emailjs;
+      
+      emailjs.init("LDQdivLXpW4QOuPBp");
+      
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: "indugundam2004@gmail.com"
+      };
+      
+      const result = await emailjs.send(
+        "service_portfolio",
+        "template_portfolio",
+        templateParams
+      );
+      
+      if (result.status === 200) {
         setFormStatus("success");
         setFormData({ name: "", email: "", message: "" });
         toast.success("Message sent successfully! I'll get back to you soon.");
-        
-        // Reset form status after 3 seconds
-        setTimeout(() => {
-          setFormStatus("idle");
-        }, 3000);
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
       console.error("Error sending message:", error);
       setFormStatus("error");
-      toast.error("Failed to send message. Please try again later.");
-      
-      // Reset form status after 3 seconds
+      toast.error("Failed to send message. Please try again later or contact directly via email.");
+    } finally {
       setTimeout(() => {
         setFormStatus("idle");
       }, 3000);
@@ -117,7 +112,6 @@ const Contact = () => {
       ref={ref}
       className="py-20 scroll-section relative overflow-hidden"
     >
-      {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-200 dark:bg-blue-900 rounded-full blur-3xl"></div>
