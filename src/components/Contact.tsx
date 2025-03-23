@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -26,9 +25,24 @@ const Contact = () => {
   }, [inView]);
 
   useEffect(() => {
-    // Initialize EmailJS when component mounts
-    if ((window as any).emailjs) {
-      (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
+    if (typeof window !== 'undefined') {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.emailjs.com/sdk/2.6.4/email.min.js';
+      script.async = true;
+      script.onload = () => {
+        if ((window as any).emailjs) {
+          console.log("EmailJS library loaded successfully");
+          (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
+        }
+      };
+      
+      const existingScript = document.querySelector('script[src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"]');
+      if (!existingScript) {
+        document.body.appendChild(script);
+      } else if ((window as any).emailjs) {
+        console.log("EmailJS already initialized");
+        (window as any).emailjs.init("LDQdivLXpW4QOuPBp");
+      }
     }
   }, []);
   
@@ -43,12 +57,13 @@ const Contact = () => {
     
     try {
       if (!(window as any).emailjs) {
+        console.error("EmailJS library not loaded");
         throw new Error("EmailJS library not loaded");
       }
       
       const emailjs = (window as any).emailjs;
+      console.log("EmailJS initialized:", emailjs);
       
-      // Create template parameters
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
@@ -58,7 +73,6 @@ const Contact = () => {
       
       console.log("Sending email with params:", templateParams);
       
-      // Send the email
       const result = await emailjs.send(
         "service_portfolio",
         "template_portfolio",
@@ -67,12 +81,12 @@ const Contact = () => {
       
       console.log("Email result:", result);
       
-      if (result.status === 200) {
+      if (result && result.status === 200) {
         setFormStatus("success");
         setFormData({ name: "", email: "", message: "" });
         toast.success("Message sent successfully! I'll get back to you soon.");
       } else {
-        throw new Error(`Failed to send message: ${result.text}`);
+        throw new Error(`Failed to send message: ${result?.text || 'Unknown error'}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
