@@ -16,26 +16,6 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-    
-    <!-- EmailJS Library -->
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
-    <script type="text/javascript">
-      (function() {
-        // Initialize EmailJS with your public key
-        if (typeof emailjs !== 'undefined') {
-          emailjs.init("LDQdivLXpW4QOuPBp");
-          console.log("EmailJS initialized successfully");
-        } else {
-          console.error("EmailJS library failed to load");
-          document.addEventListener('DOMContentLoaded', function() {
-            if (typeof emailjs !== 'undefined') {
-              emailjs.init("LDQdivLXpW4QOuPBp");
-              console.log("EmailJS initialized on DOMContentLoaded");
-            }
-          });
-        }
-      })();
-    </script>
   </head>
 
   <body>

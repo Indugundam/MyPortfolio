@@ -6,6 +6,7 @@ import { Send, Github, Linkedin, AtSign, Smartphone, MapPin } from "lucide-react
 import { toast } from "sonner";
 import { z } from "zod";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Textarea } from "@/components/ui/textarea";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -70,6 +71,7 @@ const Contact = () => {
     }
   };
   
+  // Direct form submission to a form service
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -81,40 +83,27 @@ const Contact = () => {
     setFormStatus("sending");
     
     try {
-      if (typeof window === 'undefined') {
-        throw new Error("Window object not available");
-      }
+      // Using a third-party form service like Formspree
+      const response = await fetch("https://formspree.io/f/xvonbaro", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: `New message from ${formData.name} via Portfolio`,
+          _replyto: formData.email,
+        }),
+      });
       
-      if (!window.emailjs) {
-        console.error("EmailJS library not loaded or not available");
-        throw new Error("EmailJS library not loaded or not available");
-      }
-      
-      console.log("Starting email send process");
-      
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_email: "indugundam2004@gmail.com"
-      };
-      
-      console.log("Sending email with params:", templateParams);
-      
-      const result = await window.emailjs.send(
-        "service_portfolio",  // Use your EmailJS service ID
-        "template_portfolio", // Use your EmailJS template ID
-        templateParams
-      );
-      
-      console.log("Email send complete. Result:", result);
-      
-      if (result && result.status === 200) {
+      if (response.ok) {
         setFormStatus("success");
         setFormData({ name: "", email: "", message: "" });
         toast.success("Message sent successfully! I'll get back to you soon.");
       } else {
-        throw new Error(`Failed to send message: ${result?.text || 'Unknown error'}`);
+        throw new Error(`Failed to send message: ${response.statusText}`);
       }
     } catch (error) {
       console.error("Error sending message:", error);
@@ -125,6 +114,14 @@ const Contact = () => {
         setFormStatus("idle");
       }, 3000);
     }
+  };
+  
+  // Alternative method: opening email client
+  const handleEmailRedirect = () => {
+    const subject = encodeURIComponent("Message from Portfolio Website");
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:indugundam2004@gmail.com?subject=${subject}&body=${body}`;
+    toast.success("Opening your email client...");
   };
   
   const contactInfo = [
@@ -289,7 +286,7 @@ const Contact = () => {
                     <label htmlFor="message" className="block text-sm font-medium mb-1">
                       Message
                     </label>
-                    <textarea
+                    <Textarea
                       id="message"
                       name="message"
                       value={formData.message}
@@ -303,37 +300,48 @@ const Contact = () => {
                           : "border-primary/10 focus:ring-primary"
                       )}
                       placeholder="Your message"
-                    ></textarea>
+                    />
                     {formErrors.message && (
                       <p className="mt-1 text-sm text-red-500">{formErrors.message}</p>
                     )}
                   </div>
                   
-                  <button
-                    type="submit"
-                    disabled={formStatus === "sending"}
-                    className={cn(
-                      "w-full px-6 py-3 flex items-center justify-center space-x-2 rounded-lg font-medium transition-all",
-                      formStatus === "sending" ? "bg-gradient-blue/70 cursor-not-allowed" : "bg-gradient-blue hover:shadow-lg",
-                      "text-primary-foreground shadow-md"
-                    )}
-                  >
-                    {formStatus === "sending" ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Sending...</span>
-                      </>
-                    ) : formStatus === "success" ? (
-                      <span>Message Sent!</span>
-                    ) : formStatus === "error" ? (
-                      <span>Failed to send. Try again</span>
-                    ) : (
-                      <>
-                        <Send className="w-4 h-4" />
-                        <span>Send Message</span>
-                      </>
-                    )}
-                  </button>
+                  <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                    <button
+                      type="submit"
+                      disabled={formStatus === "sending"}
+                      className={cn(
+                        "w-full px-6 py-3 flex items-center justify-center space-x-2 rounded-lg font-medium transition-all",
+                        formStatus === "sending" ? "bg-gradient-blue/70 cursor-not-allowed" : "bg-gradient-blue hover:shadow-lg",
+                        "text-primary-foreground shadow-md"
+                      )}
+                    >
+                      {formStatus === "sending" ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Sending...</span>
+                        </>
+                      ) : formStatus === "success" ? (
+                        <span>Message Sent!</span>
+                      ) : formStatus === "error" ? (
+                        <span>Failed to send. Try again</span>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </button>
+                    
+                    <button
+                      type="button"
+                      onClick={handleEmailRedirect}
+                      className="w-full px-6 py-3 flex items-center justify-center space-x-2 rounded-lg font-medium transition-all bg-white/10 hover:bg-white/20 text-foreground shadow-md"
+                    >
+                      <AtSign className="w-4 h-4" />
+                      <span>Open Mail App</span>
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>

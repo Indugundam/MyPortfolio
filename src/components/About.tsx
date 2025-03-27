@@ -3,18 +3,22 @@ import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Download, FileText } from "lucide-react";
+
 const About = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2
   });
   const [visible, setVisible] = useState(false);
+  
   useEffect(() => {
     if (inView) {
       setVisible(true);
     }
   }, [inView]);
-  return <section id="about" ref={ref} className="py-12 scroll-section relative overflow-hidden">
+  
+  return (
+    <section id="about" ref={ref} className="py-12 scroll-section relative overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <div className="absolute top-1/3 right-0 w-80 h-80 bg-purple-200 dark:bg-purple-900 rounded-full blur-3xl"></div>
@@ -64,6 +68,8 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;
