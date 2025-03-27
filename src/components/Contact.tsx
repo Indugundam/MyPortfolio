@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Send, Github, Linkedin, AtSign, Smartphone, MapPin } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 // Form validation schema
 const contactSchema = z.object({
@@ -32,45 +33,13 @@ const Contact = () => {
     message?: string;
   }>({});
   
+  const isMobile = useIsMobile();
+  
   useEffect(() => {
     if (inView) {
       setVisible(true);
     }
   }, [inView]);
-
-  // Initialize EmailJS when component mounts
-  useEffect(() => {
-    // Check if EmailJS is available in the global scope
-    if (typeof window !== 'undefined') {
-      if (window.emailjs) {
-        console.log("EmailJS is available on component mount");
-        try {
-          window.emailjs.init("LDQdivLXpW4QOuPBp");
-          console.log("EmailJS initialized in component");
-        } catch (error) {
-          console.error("Error initializing EmailJS:", error);
-        }
-      } else {
-        console.warn("EmailJS not found on window object");
-        // Add a listener for when EmailJS might become available
-        const checkEmailJS = setInterval(() => {
-          if (window.emailjs) {
-            console.log("EmailJS became available");
-            try {
-              window.emailjs.init("LDQdivLXpW4QOuPBp");
-              console.log("EmailJS initialized after waiting");
-            } catch (error) {
-              console.error("Error initializing EmailJS after waiting:", error);
-            }
-            clearInterval(checkEmailJS);
-          }
-        }, 1000);
-        
-        // Clean up interval
-        return () => clearInterval(checkEmailJS);
-      }
-    }
-  }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -177,7 +146,7 @@ const Contact = () => {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
       value: "github.com/indugundam",
-      href: "https://github.com/indugundam"
+      href: "https://github.com/Indugundam"
     },
     { 
       icon: <Linkedin className="w-5 h-5" />,
