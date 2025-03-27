@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -42,7 +43,7 @@ const About = () => {
                   <span>View Resume</span>
                 </a>
                 
-                <a href="/lovable-uploads/e8e29d54-c538-460f-8859-76337c73649d.png" download="Indu_Gundam_Resume.png" className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm bg-gradient-blue text-primary-foreground rounded-lg font-medium hover:shadow-lg transition-all shadow-md">
+                <a href="/lovable-uploads/e8e29d54-c538-460f-8859-76337c73649d.png" download="Indu_Gundam_Resume.pdf" className="inline-flex items-center justify-center space-x-2 px-4 py-2 text-sm bg-gradient-blue text-primary-foreground rounded-lg font-medium hover:shadow-lg transition-all shadow-md">
                   <Download className="w-4 h-4" />
                   <span>Download Resume</span>
                 </a>

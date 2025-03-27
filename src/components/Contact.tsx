@@ -81,7 +81,11 @@ const Contact = () => {
     setFormStatus("sending");
     
     try {
-      if (typeof window === 'undefined' || !window.emailjs) {
+      if (typeof window === 'undefined') {
+        throw new Error("Window object not available");
+      }
+      
+      if (!window.emailjs) {
         console.error("EmailJS library not loaded or not available");
         throw new Error("EmailJS library not loaded or not available");
       }
@@ -98,8 +102,8 @@ const Contact = () => {
       console.log("Sending email with params:", templateParams);
       
       const result = await window.emailjs.send(
-        "service_portfolio",
-        "template_portfolio",
+        "service_portfolio",  // Use your EmailJS service ID
+        "template_portfolio", // Use your EmailJS template ID
         templateParams
       );
       
@@ -146,7 +150,7 @@ const Contact = () => {
       icon: <Github className="w-5 h-5" />,
       label: "GitHub",
       value: "github.com/indugundam",
-      href: "https://github.com/Indugundam"
+      href: "https://github.com/Indugundam/LotteryHub"
     },
     { 
       icon: <Linkedin className="w-5 h-5" />,

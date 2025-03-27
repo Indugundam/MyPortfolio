@@ -21,7 +21,19 @@
     <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
     <script type="text/javascript">
       (function() {
-        emailjs.init("LDQdivLXpW4QOuPBp");
+        // Initialize EmailJS with your public key
+        if (typeof emailjs !== 'undefined') {
+          emailjs.init("LDQdivLXpW4QOuPBp");
+          console.log("EmailJS initialized successfully");
+        } else {
+          console.error("EmailJS library failed to load");
+          document.addEventListener('DOMContentLoaded', function() {
+            if (typeof emailjs !== 'undefined') {
+              emailjs.init("LDQdivLXpW4QOuPBp");
+              console.log("EmailJS initialized on DOMContentLoaded");
+            }
+          });
+        }
       })();
     </script>
   </head>
