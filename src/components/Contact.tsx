@@ -1,8 +1,17 @@
+
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
 import { Send, Github, Linkedin, AtSign, Smartphone, MapPin } from "lucide-react";
 import { toast } from "sonner";
+import { z } from "zod";
+
+// Form validation schema
+const contactSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters" }),
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters" })
+});
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -17,6 +26,11 @@ const Contact = () => {
     email: "",
     message: ""
   });
+  const [formErrors, setFormErrors] = useState<{
+    name?: string;
+    email?: string;
+    message?: string;
+  }>({});
   
   useEffect(() => {
     if (inView) {
@@ -24,27 +38,77 @@ const Contact = () => {
     }
   }, [inView]);
 
+  // Initialize EmailJS when component mounts
   useEffect(() => {
-    const initializeEmailJS = () => {
-      if (typeof window !== 'undefined' && window.emailjs) {
-        console.log("Contact: EmailJS already available, initializing");
-        window.emailjs.init("LDQdivLXpW4QOuPBp");
+    // Check if EmailJS is available in the global scope
+    if (typeof window !== 'undefined') {
+      if (window.emailjs) {
+        console.log("EmailJS is available on component mount");
+        try {
+          window.emailjs.init("LDQdivLXpW4QOuPBp");
+          console.log("EmailJS initialized in component");
+        } catch (error) {
+          console.error("Error initializing EmailJS:", error);
+        }
       } else {
-        console.log("Contact: EmailJS not available yet");
-        setTimeout(initializeEmailJS, 1000);
+        console.warn("EmailJS not found on window object");
+        // Add a listener for when EmailJS might become available
+        const checkEmailJS = setInterval(() => {
+          if (window.emailjs) {
+            console.log("EmailJS became available");
+            try {
+              window.emailjs.init("LDQdivLXpW4QOuPBp");
+              console.log("EmailJS initialized after waiting");
+            } catch (error) {
+              console.error("Error initializing EmailJS after waiting:", error);
+            }
+            clearInterval(checkEmailJS);
+          }
+        }, 1000);
+        
+        // Clean up interval
+        return () => clearInterval(checkEmailJS);
       }
-    };
-
-    initializeEmailJS();
+    }
   }, []);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Clear error when field is being edited
+    if (formErrors[name as keyof typeof formErrors]) {
+      setFormErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+  };
+  
+  const validateForm = () => {
+    try {
+      contactSchema.parse(formData);
+      setFormErrors({});
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: typeof formErrors = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as keyof typeof formErrors] = err.message;
+          }
+        });
+        setFormErrors(newErrors);
+      }
+      return false;
+    }
   };
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form
+    if (!validateForm()) {
+      return;
+    }
+    
     setFormStatus("sending");
     
     try {
@@ -211,9 +275,17 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                      className={cn(
+                        "w-full px-4 py-2 border rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 transition-all",
+                        formErrors.name 
+                          ? "border-red-500 focus:ring-red-500" 
+                          : "border-primary/10 focus:ring-primary"
+                      )}
                       placeholder="Your name"
                     />
+                    {formErrors.name && (
+                      <p className="mt-1 text-sm text-red-500">{formErrors.name}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -227,9 +299,17 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                      className={cn(
+                        "w-full px-4 py-2 border rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 transition-all",
+                        formErrors.email 
+                          ? "border-red-500 focus:ring-red-500" 
+                          : "border-primary/10 focus:ring-primary"
+                      )}
                       placeholder="Your email"
                     />
+                    {formErrors.email && (
+                      <p className="mt-1 text-sm text-red-500">{formErrors.email}</p>
+                    )}
                   </div>
                   
                   <div>
@@ -243,9 +323,17 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-2 border border-primary/10 rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 focus:ring-primary transition-all resize-none"
+                      className={cn(
+                        "w-full px-4 py-2 border rounded-lg bg-white/5 backdrop-blur-sm focus:outline-none focus:ring-1 transition-all resize-none",
+                        formErrors.message 
+                          ? "border-red-500 focus:ring-red-500" 
+                          : "border-primary/10 focus:ring-primary"
+                      )}
                       placeholder="Your message"
                     ></textarea>
+                    {formErrors.message && (
+                      <p className="mt-1 text-sm text-red-500">{formErrors.message}</p>
+                    )}
                   </div>
                   
                   <button
