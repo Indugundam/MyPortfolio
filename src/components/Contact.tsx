@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { cn } from "@/lib/utils";
@@ -71,8 +70,22 @@ const Contact = () => {
     }
   };
   
-  // Direct form submission to a form service
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Direct email client method
+  const handleEmailRedirect = () => {
+    // Validate form first
+    if (!validateForm()) {
+      return;
+    }
+    
+    const subject = encodeURIComponent("Message from Portfolio Website");
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:indugundam2004@gmail.com?subject=${subject}&body=${body}`;
+    toast.success("Opening your email client...");
+    setFormData({ name: "", email: "", message: "" });
+  };
+  
+  // Handle form submission (now just shows a toast and calls the redirect)
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate form
@@ -82,46 +95,12 @@ const Contact = () => {
     
     setFormStatus("sending");
     
-    try {
-      // Using a third-party form service like Formspree
-      const response = await fetch("https://formspree.io/f/xvonbaro", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          _subject: `New message from ${formData.name} via Portfolio`,
-          _replyto: formData.email,
-        }),
-      });
-      
-      if (response.ok) {
-        setFormStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-        toast.success("Message sent successfully! I'll get back to you soon.");
-      } else {
-        throw new Error(`Failed to send message: ${response.statusText}`);
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      setFormStatus("error");
-      toast.error("Failed to send message. Please try again later or contact directly via email.");
-    } finally {
-      setTimeout(() => {
-        setFormStatus("idle");
-      }, 3000);
-    }
-  };
-  
-  // Alternative method: opening email client
-  const handleEmailRedirect = () => {
-    const subject = encodeURIComponent("Message from Portfolio Website");
-    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
-    window.location.href = `mailto:indugundam2004@gmail.com?subject=${subject}&body=${body}`;
-    toast.success("Opening your email client...");
+    // Simulate sending
+    setTimeout(() => {
+      handleEmailRedirect();
+      setFormStatus("success");
+      toast.success("Message prepared in your email client!");
+    }, 500);
   };
   
   const contactInfo = [
@@ -319,12 +298,12 @@ const Contact = () => {
                       {formStatus === "sending" ? (
                         <>
                           <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          <span>Sending...</span>
+                          <span>Preparing...</span>
                         </>
                       ) : formStatus === "success" ? (
-                        <span>Message Sent!</span>
+                        <span>Message Ready!</span>
                       ) : formStatus === "error" ? (
-                        <span>Failed to send. Try again</span>
+                        <span>Try again</span>
                       ) : (
                         <>
                           <Send className="w-4 h-4" />
